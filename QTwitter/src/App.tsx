@@ -1,11 +1,18 @@
+import Login from "./components/login/login";
+// import MyComponent from './components/component/component';
+import Register from './components/signup/signup';
 export default function App() {
   return (
-    <p className="flex justify-center">
+    <div className="flex flex-col justify-center items-center">
 
-    <h1 className="text-4xl font-bold underline">
-      Hello world!
-    </h1>
+      <h1 className="text-4xl font-bold underline p-4">Hello world!</h1>
 
-    </p>
-  )
+      <div className="my-20 flex flex-col space-y-4 ">
+        <Login></Login>
+        <Register></Register>
+        {/* <MyComponent></MyComponent> */}
+      </div>
+
+    </div >
+  );
 }
