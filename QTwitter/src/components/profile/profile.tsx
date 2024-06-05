@@ -1,4 +1,4 @@
-function Feed() {
+function Profile() {
     return (
         <div className="flex flex-col border-2 box-content h-auto max-w-screen-md p-2 px-4 bg-black text-white rounded-3xl ">
             <div className="m-4 p-2 justify-center space-x-10 flow-root roun">
@@ -51,4 +51,4 @@ function Feed() {
         </div>
     );
 }
-export default Feed;
+export default Profile;
