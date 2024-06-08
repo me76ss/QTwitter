@@ -2,7 +2,7 @@
 import Feed from './components/feed/feed';
 import Profile from './components/profile/profile';
 import Tweet from './components/tweet/tweet';
-import Navbar from './layout/navBar/navBar';
+import Navbar from './components/navBar/navBar';
 import Login from './components/login/login';
 import Register from './components/signup/signup';
 export default function App() {
