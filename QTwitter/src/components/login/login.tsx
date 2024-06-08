@@ -1,5 +1,5 @@
-function Login() {
 
+export const login = () => {
     return (
         <div className="flex flex-col items-start border-2 rounded-2xl px-10 py-4 bg-black text-white m-auto">
             <div className="border-2 rounded-xl m-auto p-1.5 mb-10 bg-secondary">
@@ -16,5 +16,11 @@ function Login() {
         </div>
    
     );
-}
-export default Login;
+};
+
+
+// function Login() {
+
+
+// }
+// export default Login;

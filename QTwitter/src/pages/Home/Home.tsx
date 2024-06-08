@@ -1,9 +1,11 @@
+import Feed from "../../components/feed/feed";
+
 export const Home = () => {
   return (
-    <div className="text-red-950 justify-center ">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tenetur
-      quibusdam minima minus dolor quidem. Quasi dignissimos quidem eveniet non
-      culpa aut quos sunt, veritatis sapiente odio? Eaque, alias sit.
+    <div>
+      <div className="flex justify-center mt-10 m-auto">
+       <Feed></Feed>
+      </div>
     </div>
   );
 };

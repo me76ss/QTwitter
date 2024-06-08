@@ -15,7 +15,7 @@ const NavItem: React.FC<NavItemProps> = ({ label, href }) => {
 
 const Navbar: React.FC = () => {
   return (
-    <nav className="bg-gray-800 text-white flex rounded-xl items-center justify-between p-4">
+    <nav className="bg-gray-800 text-white flex items-center justify-between p-4">
       <div className="flex">
         <NavItem label="Profile" />
         <NavItem label="Search" />
