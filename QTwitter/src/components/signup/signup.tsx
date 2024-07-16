@@ -1,32 +1,78 @@
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { signupSchema } from "../validation";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-export const signup = () => {
-    return (
-        <div className="flex flex-col items-start border-2 rounded-2xl px-10 py-4 bg-black text-white m-auto">
-            <div className="border-2 rounded-xl m-auto p-1.5 mb-10 bg-secondary">
-                SignUp
-            </div>
 
-            <label className="border-1 rounded-2xl p-2 bg-secondary text-white">Email</label>
-            <input className="border-2 rounded-2xl p-2 mb-6 mt-2 bg-gray-200 text-white" type="email" placeholder="Email"/>
-            <label className="border-1 rounded-2xl p-2 bg-secondary"  >Username</label>
-            <input className="border-2 rounded-2xl p-2 mb-6 mt-2 bg-gray-200" type="text" placeholder="username" />
+export const signup: React.FC = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { register, handleSubmit } = useForm({
+    defaultValues:{
+        email:"",
+        username:"",
+        password:""
+    },
+    resolver:yupResolver(signupSchema),
+  });
+ // eslint-disable-next-line @typescript-eslint/no-explicit-any
+ const onSubmitHandler = (formData: any)=>{
+    console.log(formData)
 
-            <label className="border-1 rounded-2xl p-2 bg-secondary" >password</label>
-            <input className="border-2 rounded-2xl p-2 mb-6 mt-2 bg-gray-200" type="password" placeholder="password" />
-            <button className="bg-primary text-white p-2 rounded-2xl self-end">signp</button>
+ }
 
-        </div>
+  return (
+    <div className="flex flex-col items-start border-2 rounded-2xl px-10 py-4 bg-black text-black m-auto">
+      <div className="border-2 rounded-xl m-auto p-1.5 mb-10 text-white bg-secondary">
+        SignUp
+      </div>
 
-    );
-}
+      <label className="border-1 rounded-2xl p-2 bg-secondary text-white">
+        Email
+      </label>
+      <input
+        className="border-2 rounded-2xl p-2 mb-6 mt-2 bg-gray-200"
+        type="email"
+        placeholder="Email"
+        {...register("email")}
+      />
+      <label className="border-1 rounded-2xl p-2  text-white bg-secondary">Username</label>
+      <input
+        className="border-2 rounded-2xl p-2 mb-6 mt-2 bg-gray-200"
+        type="text"
+        placeholder="username"
+        {...register("username")}
+      />
+
+      <label className="border-1 rounded-2xl p-2 bg-secondary text-white">password</label>
+      <input
+        className="border-2 rounded-2xl p-2 mb-6 mt-2 bg-gray-200"
+        type="password"
+        placeholder="password"
+        {...register("password")}
+      />
+      <button
+        className="bg-primary text-white p-2 rounded-2xl self-end hover:opacity-90"
+        onClick={handleSubmit(onSubmitHandler)}
+      >
+        submit
+      </button>
+      <div className="flex justify-center w-full">
+        <Link to={"/login"}>
+          <p className="border-2 rounded-2xl p-2 mt-4 text-white bg-slate-600 hover:opacity-85 hover:border-emerald-500">
+            go to login page
+          </p>
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+
 
 // function SignUp() {
 
-   
 // }
 // export default SignUp;
-
-
 
 // import React, { useState } from 'react';
 
