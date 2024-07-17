@@ -3,25 +3,35 @@ import { Link } from "react-router-dom";
 import { signupSchema } from "../validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-
 export const signup: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { register, handleSubmit } = useForm({
-    defaultValues:{
-        email:"",
-        username:"",
-        password:""
+  } = useForm({
+    defaultValues: {
+      email: "",
+      username: "",
+      password: "",
     },
-    resolver:yupResolver(signupSchema),
+    resolver: yupResolver(signupSchema),
   });
- // eslint-disable-next-line @typescript-eslint/no-explicit-any
- const onSubmitHandler = (formData: any)=>{
-    console.log(formData)
+  console.log({errors})
 
- }
+  // const errors: FieldErrors<{
+  //   email: string;
+  //   username: string;
+  //   password: string;
+  // }>
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onSubmitHandler = (formData: any) => {
+    console.log(formData);
+  };
 
   return (
-    <div className="flex flex-col items-start border-2 rounded-2xl px-10 py-4 bg-black text-black m-auto">
+    <div className="flex flex-col w-96 items-start border-2 rounded-2xl px-10 py-4 bg-black text-black m-auto">
       <div className="border-2 rounded-xl m-auto p-1.5 mb-10 text-white bg-secondary">
         SignUp
       </div>
@@ -30,26 +40,33 @@ export const signup: React.FC = () => {
         Email
       </label>
       <input
-        className="border-2 rounded-2xl p-2 mb-6 mt-2 bg-gray-200"
+        className="border-2 w-full rounded-2xl p-2 mb-3 mt-2 bg-gray-200"
         type="email"
         placeholder="Email"
         {...register("email")}
       />
-      <label className="border-1 rounded-2xl p-2  text-white bg-secondary">Username</label>
+      {errors.email ? <p className="text-error mb-3">{errors.email.message}</p> : null}
+      <label className="border-1 rounded-2xl p-2  text-white bg-secondary">
+        Username
+      </label>
       <input
-        className="border-2 rounded-2xl p-2 mb-6 mt-2 bg-gray-200"
+        className="border-2  w-full rounded-2xl p-2 mb-3 mt-2 bg-gray-200"
         type="text"
         placeholder="username"
         {...register("username")}
       />
-
-      <label className="border-1 rounded-2xl p-2 bg-secondary text-white">password</label>
+      {errors.username ? <p className="text-error mb-3">{errors.username.message}</p> : null}
+      <label className="border-1 rounded-2xl p-2 bg-secondary text-white">
+        password
+      </label>
       <input
-        className="border-2 rounded-2xl p-2 mb-6 mt-2 bg-gray-200"
+        className="border-2 w-full rounded-2xl p-2 mb-3 mt-2 bg-gray-200"
         type="password"
         placeholder="password"
         {...register("password")}
       />
+      {errors.password ? <p className="text-error mb-3">{errors.password.message}</p> : null}
+
       <button
         className="bg-primary text-white p-2 rounded-2xl self-end hover:opacity-90"
         onClick={handleSubmit(onSubmitHandler)}
@@ -66,8 +83,6 @@ export const signup: React.FC = () => {
     </div>
   );
 };
-
-
 
 // function SignUp() {
 
