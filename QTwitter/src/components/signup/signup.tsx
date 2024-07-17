@@ -2,13 +2,17 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { signupSchema } from "../validation";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useSignup } from "../../api/signup";
+
 
 export const signup: React.FC = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { mutate } = useSignup();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+    // eslint-disable-next-line react-hooks/rules-of-hooks
   } = useForm({
     defaultValues: {
       email: "",
@@ -17,17 +21,17 @@ export const signup: React.FC = () => {
     },
     resolver: yupResolver(signupSchema),
   });
-  console.log({errors})
-
-  // const errors: FieldErrors<{
-  //   email: string;
-  //   username: string;
-  //   password: string;
-  // }>
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmitHandler = (formData: any) => {
-    console.log(formData);
+    mutate(formData, {
+      onSuccess: (data: unknown) => {
+        console.log(data);
+      },
+      onError: (error: unknown) => {
+        console.log(error);
+      },
+    });
   };
 
   return (
@@ -45,7 +49,9 @@ export const signup: React.FC = () => {
         placeholder="Email"
         {...register("email")}
       />
-      {errors.email ? <p className="text-error mb-3">{errors.email.message}</p> : null}
+      {errors.email ? (
+        <p className="text-error mb-3">{errors.email.message}</p>
+      ) : null}
       <label className="border-1 rounded-2xl p-2  text-white bg-secondary">
         Username
       </label>
@@ -55,7 +61,9 @@ export const signup: React.FC = () => {
         placeholder="username"
         {...register("username")}
       />
-      {errors.username ? <p className="text-error mb-3">{errors.username.message}</p> : null}
+      {errors.username ? (
+        <p className="text-error mb-3">{errors.username.message}</p>
+      ) : null}
       <label className="border-1 rounded-2xl p-2 bg-secondary text-white">
         password
       </label>
@@ -65,7 +73,9 @@ export const signup: React.FC = () => {
         placeholder="password"
         {...register("password")}
       />
-      {errors.password ? <p className="text-error mb-3">{errors.password.message}</p> : null}
+      {errors.password ? (
+        <p className="text-error mb-3">{errors.password.message}</p>
+      ) : null}
 
       <button
         className="bg-primary text-white p-2 rounded-2xl self-end hover:opacity-90"
@@ -90,7 +100,6 @@ export const signup: React.FC = () => {
 // export default SignUp;
 
 // import React, { useState } from 'react';
-
 // const Register: React.FC = () => {
 //   const [email, setEmail] = useState('');
 //   const [password, setPassword] = useState('');
