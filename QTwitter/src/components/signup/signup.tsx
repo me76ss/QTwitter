@@ -1,18 +1,18 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signupSchema } from "../validation";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSignup } from "../../api/signup";
-
+import { useSignupAPI } from "../../api/signup";
+import { toast } from "react-toastify";
 
 export const signup: React.FC = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { mutate } = useSignup();
+  const { mutate } = useSignupAPI();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    // eslint-disable-next-line react-hooks/rules-of-hooks
   } = useForm({
     defaultValues: {
       email: "",
@@ -21,15 +21,15 @@ export const signup: React.FC = () => {
     },
     resolver: yupResolver(signupSchema),
   });
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmitHandler = (formData: any) => {
     mutate(formData, {
-      onSuccess: (data: unknown) => {
-        console.log(data);
+      onSuccess: () => {
+        toast.success("signup is successful");
+        navigate("/login");
       },
-      onError: (error: unknown) => {
-        console.log(error);
+      onError: () => {
+        toast.error("Error, try again!!!");
       },
     });
   };

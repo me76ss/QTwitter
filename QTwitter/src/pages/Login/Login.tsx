@@ -1,6 +1,8 @@
 import { LoginComponent } from "../../components";
+import { useCheckAuth } from "../../hooks/useCheckAuth";
 
 export const Login = () => {
+  useCheckAuth();
   return (
     <div className="bg-gray-800 flex m-auto h-screen items-center justify-center content-center">
       <div className="flex flex-col justify-center">

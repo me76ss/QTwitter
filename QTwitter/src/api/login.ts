@@ -1,12 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 import { Axios } from "../configs/axios";
 
-export const useSignupAPI = () => {
+export const useLoginAPI = () => {
   return useMutation({
-    mutationKey: ["signup"],
+    mutationKey: ["login"],
     mutationFn: async (body) => {
-      const response = await Axios.post("/api/signup",body);
-      return response;
+      const response = await Axios.post("/api/login/",body);
+      return response.data;
     },
   });
 };

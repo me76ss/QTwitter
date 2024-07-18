@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { HomePage, LoginPage, SignUpPage } from "../pages";
 import { AppLayout } from "../layouts";
 import NotFound from "../pages/Error/NotFound";
-// import { SignUp } from "../pages/SignUp/SignUp";
+import { AuthProvider } from "../provider/AuthProvider";
 
 export const ROUTER_CONFIG = createBrowserRouter([
   {
@@ -12,7 +12,11 @@ export const ROUTER_CONFIG = createBrowserRouter([
     children: [
       {
         path: "/home",
-        element: <HomePage></HomePage>,
+        element: (
+          <AuthProvider>
+            <HomePage/>
+          </AuthProvider>
+        ),
       },
       // {
       //   path:"/sign",
