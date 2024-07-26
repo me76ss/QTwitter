@@ -7,14 +7,18 @@ import { AuthProvider } from "../provider/AuthProvider";
 export const ROUTER_CONFIG = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout></AppLayout>,
+    element: (
+      <AuthProvider>
+        <AppLayout></AppLayout>
+      </AuthProvider>
+    ),
     errorElement: <NotFound></NotFound>,
     children: [
       {
         path: "/home",
         element: (
           <AuthProvider>
-            <HomePage/>
+            <HomePage />
           </AuthProvider>
         ),
       },
