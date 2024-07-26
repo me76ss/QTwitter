@@ -1,0 +1,1 @@
+export{ HiMiniUserCircle as UserIcon } from "react-icons/hi2";
